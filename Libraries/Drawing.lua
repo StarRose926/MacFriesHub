@@ -1,8 +1,5 @@
--- To ensure Executors that are SO TRASH, they dont even include a Drawing Library :skull:
---
--- By: StarRose
-
 local Library = {}
+
 
 local Cache = {
 	Line = {},
@@ -168,6 +165,10 @@ Library.injectGui = function(gui)
 	DrawingScreen.SafeAreaCompatibility = Enum.SafeAreaCompatibility.None
 	DrawingScreen.ScreenInsets = Enum.ScreenInsets.None
 	DrawingScreen.DisplayOrder = 999999999
+end
+
+Library.getInjectedGui = function()
+	return DrawingScreen
 end
 
 
