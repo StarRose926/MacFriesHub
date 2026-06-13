@@ -1,4 +1,4 @@
-local env = loadstring(game:HttpGet('https://raw.githubusercontent.com/StarRose926/MacFriesHub/refs/heads/main/Libraries/LibraryLoader.lua'), '=LibraryLoader');
+local env = loadstring(game:HttpGet('https://raw.githubusercontent.com/StarRose926/MacFriesHub/refs/heads/main/Libraries/LibraryLoader.lua'), '=LibraryLoader')();
 
 local translations = {{'Cryptic', 'crypt'}, {'Signal', 'SynSignal'}}
 
@@ -12,7 +12,9 @@ return function(fenv)
     end
 
     for name, lib in env do
-        fenv[name] = lib
+        if not fenv[name] then
+            fenv[name] = lib
+        end
     end
 
     return fenv
