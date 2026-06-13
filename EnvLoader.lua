@@ -1,0 +1,19 @@
+local env = loadstring(game:HttpGet('https://raw.githubusercontent.com/StarRose926/MacFriesHub/refs/heads/main/Libraries/LibraryLoader.lua'), '=LibraryLoader');
+
+local translations = {{'Cryptic', 'crypt'}, {'Signal', 'SynSignal'}}
+
+return function(fenv)
+    for _, trans in translations do
+        local lib = env[trans[1]]
+
+        if lib then
+            env[trans[2]] = lib
+        end
+    end
+
+    for name, lib in env do
+        fenv[name] = lib
+    end
+
+    return fenv
+end
