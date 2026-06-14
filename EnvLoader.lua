@@ -8,6 +8,7 @@ return function(fenv)
 
         if lib then
             env[trans[2]] = lib
+            env[trans[1]] = nil
         end
     end
 
