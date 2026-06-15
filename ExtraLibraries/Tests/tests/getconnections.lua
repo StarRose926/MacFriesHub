@@ -26,7 +26,9 @@ return function(test)
         con:Fire(i)
 
         -- Roblox Queue maybe delayed!
-        task.wait(0.1)
+        --
+        -- we will do 1 second, just to be safe, because of Roblox being super annoying here!
+        task.wait(1)
 
         test.assert(fired_by[i], `Did not fire the Connection with Argument ({i})`)
     end
