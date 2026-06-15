@@ -84,6 +84,8 @@ test.run_tests = function(name)
     print(`{name} | Executor Test Compatibility`)
     print("✅ - Pass, ⛔ - Fail, ⏺️ - No test, 🔧 - Reapir\n")
 
+    local success_counter, fail_counter = 0, 0
+
     for _, name in pairs(test.orders) do
         local _test = test.tests[name]
         if _test.is_note then
@@ -98,6 +100,7 @@ test.run_tests = function(name)
                 _test._cleanup:StartCleanup()
 
                 if not ok then
+                    fail_counter += 1
                     if _test.repair then
                         print((`🔧 %s - Failed but can be replaced: %s`):format(name, res))
                         _test.repair()
@@ -105,6 +108,7 @@ test.run_tests = function(name)
                         warn(('⛔ %s - Failed: %s'):format(name, res))
                     end
                 elseif result.failed then
+                    fail_counter += 1
                     if _test.repair then
                         print((`🔧 %s - Failed but can be replaced: %s`):format(name, result.reason))
                         _test.repair()
@@ -112,11 +116,20 @@ test.run_tests = function(name)
                         warn(('⛔ %s - Failed: %s'):format(name, result.reason))
                     end
                 else
+                    success_counter += 1
                     print(('✅ %s'):format(name))
                 end
             end
         end
     end
+
+    print('\n')
+    print('🏁 Finished Tests 🏁')
+
+    local rate = math.round(success_counter / (success_counter + fail_counter) * 100)
+    
+    print(string.format('📊 Tests finished with a test score of %s% (%s out of %s)'):format(tostring(rate), tostring(success_counter), tostring(success_counter + fail_counter)))
+    print(string.format('⛔ %s %s failed!', tostring(fail_counter), (fail_counter > 1 and 'tests' or 'test')))
 end
 
 return test
