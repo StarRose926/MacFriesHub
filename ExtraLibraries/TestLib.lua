@@ -32,7 +32,9 @@ test.test_results = setmetatable({}, {
 test.tests = {}
 
 local function expect(name)
-    local self = {
+    local self
+    self = {
+        _cleanup = {},
         failed = function(reason)
             if test.test_results[name].failed then return end
             test.test_results[name].failed = true
@@ -42,6 +44,9 @@ local function expect(name)
             test.test_results[name].missing = true
             test.test_results[name].missing_items = missing_items
         end,
+        clean = function(obj)
+            table.insert(self._cleanup, obj)
+        end
     }
   
     self.assert = function(con, reason)
