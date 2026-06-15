@@ -1,6 +1,7 @@
 return function(test)
     local part = Instance.new('Part', workspace)
     test.clean(part)
+    part.Transparency = 1
     part.CanCollide = false
     part.Position = game:GetService('Players').LocalPlayer.Character.PrimaryPart.Position
     part.Anchored = true
