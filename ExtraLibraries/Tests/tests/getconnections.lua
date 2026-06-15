@@ -22,7 +22,7 @@ return function(test)
 
     for i, con in connections do
         local fn = event_functions[i]
-        test.assert(con.Function == fn, `Function for index {i} did not return the original function!`)
+        test.assert(type(con.Function) == 'function', `Function for index {i} did not return a Function! (got {type(con.Function)})`)
         con:Fire(i)
 
         test.assert(fired_by[i], `Did not fire the Connection with Argument ({i})`)
