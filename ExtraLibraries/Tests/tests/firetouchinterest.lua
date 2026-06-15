@@ -1,7 +1,7 @@
 return function(test)
     local rootPart = game:GetService('Players').LocalPlayer.Character.PrimaryPart
   
-    local part, part_2 = Instance.new('Part', workspace), Instance.new('Part', workspace)
+    local part = Instance.new('Part', workspace)
     test.clean(part)
     part.Transparency = 1
     part.CanCollide = false
@@ -15,7 +15,7 @@ return function(test)
         end
     end)
 
-    firetouchinterest(part, rootPart, 1)
+    firetouchinterest(part, rootPart, 0)
 
     task.wait(0.5)
 
