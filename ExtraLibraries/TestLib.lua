@@ -97,7 +97,7 @@ test.run_tests = function(name)
             else
                 local ok, res = pcall(_test.fn, _test.lib)
                 local result = test.test_results[name]
-                _test._cleanup:StartCleanup()
+                _test.lib._cleanup:StartCleanup()
 
                 if not ok then
                     fail_counter += 1
