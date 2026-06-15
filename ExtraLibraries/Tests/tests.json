@@ -1,7 +1,8 @@
 {
   "tests": [
     "fireclickdetector",
-    ["firetouchinterest", "firetouchtransmitter"],
-    "fireproximityprompt"
+    "firetouchinterest",
+    "fireproximityprompt",
+    "firesignal"
   ]
 }
