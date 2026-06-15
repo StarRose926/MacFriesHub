@@ -5,6 +5,7 @@
     "fireproximityprompt",
     "firesignal",
     "hookfunction",
-    "restorefunction"
+    "restorefunction",
+    "getsenv"
   ]
 }
