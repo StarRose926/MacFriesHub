@@ -128,7 +128,7 @@ test.run_tests = function(name)
 
     local rate = math.round(success_counter / (success_counter + fail_counter) * 100)
     
-    print(string.format('📊 Tests finished with a test score of %s% (%s out of %s)', tostring(rate), tostring(success_counter), tostring(success_counter + fail_counter)))
+    print(string.format('📊 Tests finished with a test score of %s%% (%s out of %s)', tostring(rate), tostring(success_counter), tostring(success_counter + fail_counter)))
     print(string.format('⛔ %s %s failed!', tostring(fail_counter), (fail_counter > 1 and 'tests' or 'test')))
 end
 
