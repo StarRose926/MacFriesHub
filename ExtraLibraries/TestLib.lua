@@ -82,11 +82,13 @@ end
 
 test.run_tests = function(name)
     print(`{name} | Executor Test Compatibility`)
-    print("✅ - Pass, ⛔ - Fail, ⏺️ - No test, ⚠️ - Missing Functionality, 🔧 - Reapir")
+    print("✅ - Pass, ⛔ - Fail, ⏺️ - No test, ⚠️ - Missing Functionality, 🔧 - Reapir\n")
 
     local success_counter, missing_counter, fail_counter = 0, 0, 0
 
-    for _, name in pairs(test.orders) do
+    for i, name in pairs(test.orders) do
+        local line_down = i == #test.orders and '\n' or ''
+
         local _test = test.tests[name]
         if _test.is_note then
             print(('⏺️ %s'):format(name))
@@ -102,35 +104,34 @@ test.run_tests = function(name)
                 if not ok then
                     fail_counter += 1
                     if _test.repair then
-                        print((`🔧 %s - Failed but can be replaced: %s`):format(name, res))
+                        print((`🔧 %s - Failed but can be replaced: %s`):format(name, res .. line_down))
                         _test.repair()
                     else		
-                        warn(('⛔ %s - Failed: %s'):format(name, res))
+                        warn(('⛔ %s - Failed: %s'):format(name, res .. line_down))
                     end
                 elseif result.missing then
                     missing_counter += 1
                     if typeof(result.missing_items) == 'string' then
-                        warn((`⚠️ %s - Missing Functionality: %s`):format(name, result.missing_items))
+                        warn((`⚠️ %s - Missing Functionality: %s`):format(name, result.missing_items .. line_down))
                     elseif typeof(result.missing_items) == 'table' then
-                        warn((`⚠️ %s - Missing Functionality: %s`):format(name, table.concat(result.missing_items, ', ')))
+                        warn((`⚠️ %s - Missing Functionality: %s`):format(name, table.concat(result.missing_items, ', ') .. line_down))
                     end
                 elseif result.failed then
                     fail_counter += 1
                     if _test.repair then
-                        print((`🔧 %s - Failed but can be replaced: %s`):format(name, result.reason))
+                        print((`🔧 %s - Failed but can be replaced: %s`):format(name, result.reason .. line_down))
                         _test.repair()
                     else
-                        warn(('⛔ %s - Failed: %s'):format(name, result.reason))
+                        warn(('⛔ %s - Failed: %s'):format(name, result.reason .. line_down))
                     end
                 else
                     success_counter += 1
-                    print(('✅ %s%s'):format(name, (res and ' • ' .. tostring(res) or '')))
+                    print(('✅ %s%s'):format(name, (res and ' • ' .. tostring(res) or '') .. line_down))
                 end
             end
         end
     end
 
-    print('\n')
     print('🏁 Finished Tests 🏁')
 
     local total = success_counter + missing_counter + fail_counter
