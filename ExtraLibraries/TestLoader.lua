@@ -16,7 +16,13 @@ for _, v in test_info.tests do
         if test_str ~= '404: Not Found' then
             local func = loadstring(test_str)()
 
-            TestLib.create(v, func)
+            TestLib.create(v, func, function()
+                if v == 'Cryptic' then
+                    v = 'crypt'
+                end
+
+                return loadstring(game:HttpGet(('https://raw.githubusercontent.com/StarRose926/MacFriesHub/refs/heads/main/Libraries/%s.lua'):format(v)))
+            end)
         end
     end
 end
