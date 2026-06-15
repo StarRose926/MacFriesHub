@@ -1,0 +1,13 @@
+{
+  "tests": [
+    "fireclickdetector",
+    "firetouchinterest",
+    "getconnections",
+    "hookfunction",
+    "restorefunction",
+    "getsenv",
+
+    "debug.getupvalue",
+    "debug.setupvalue"
+  ]
+}
