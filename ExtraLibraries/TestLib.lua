@@ -1,3 +1,5 @@
+local Orchestrator = loadstring(game:HttpGet('https://raw.githubusercontent.com/StarRose926/MacFriesHub/refs/heads/main/ExtraLibraries/Orchestrator.lua'))()
+
 local env = getfenv()
 
 local function getGlobal(path)
@@ -34,7 +36,7 @@ test.tests = {}
 local function expect(name)
     local self
     self = {
-        _cleanup = {},
+        _cleanup = Orchestrator.new(),
         failed = function(reason)
             if test.test_results[name].failed then return end
             test.test_results[name].failed = true
@@ -45,7 +47,7 @@ local function expect(name)
             test.test_results[name].missing_items = missing_items
         end,
         clean = function(obj)
-            table.insert(self._cleanup, obj)
+            self._cleanup:AddObject(obj)
         end
     }
   
@@ -93,6 +95,7 @@ test.run_tests = function(name)
             else
                 local ok, res = pcall(_test.fn, _test.lib)
                 local result = test.test_results[name]
+                _test._cleanup:StartCleanup()
 
                 if not ok then
                     if _test.repair then
