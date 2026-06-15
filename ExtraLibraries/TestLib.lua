@@ -82,7 +82,7 @@ end
 
 test.run_tests = function(name)
     print(`{name} | Executor Test Compatibility`)
-    print("✅ - Pass, ⛔ - Fail, ⏺️ - No test, 🔧 - Reapir\n")
+    print("✅ - Pass, ⛔ - Fail, ⏺️ - No test, 🔧 - Reapir")
 
     local success_counter, fail_counter = 0, 0
 
@@ -117,7 +117,7 @@ test.run_tests = function(name)
                     end
                 else
                     success_counter += 1
-                    print(('✅ %s'):format(name))
+                    print(('✅ %s%s'):format(name, (res and ' • ' .. tostring(res) or '')))
                 end
             end
         end
