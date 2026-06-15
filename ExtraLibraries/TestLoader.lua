@@ -21,7 +21,11 @@ for _, v in test_info.tests do
                     v = 'crypt'
                 end
 
-                return loadstring(game:HttpGet(('https://raw.githubusercontent.com/StarRose926/MacFriesHub/refs/heads/main/Libraries/%s.lua'):format(v)))
+                local data = game:HttpGet(('https://raw.githubusercontent.com/StarRose926/MacFriesHub/refs/heads/main/Libraries/%s.lua'):format(v))
+
+                if data ~= '404: Not Found' then
+                    return loadstring(data)()
+                end
             end)
         end
     end
