@@ -6,6 +6,10 @@
     "firesignal",
     "hookfunction",
     "restorefunction",
-    "getsenv"
+    "getsenv",
+    "getconnections",
+
+    "debug.getupvalue",
+    "debug.setupvalue"
   ]
 }
