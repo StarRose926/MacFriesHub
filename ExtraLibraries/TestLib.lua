@@ -48,6 +48,9 @@ local function expect(name)
         end,
         clean = function(obj)
             self._cleanup:AddObject(obj)
+        end,
+        did_succeed = function(test)
+            return test.test_results[test].failed
         end
     }
   
