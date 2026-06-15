@@ -49,9 +49,7 @@ local function expect(name)
         clean = function(obj)
             self._cleanup:AddObject(obj)
         end,
-        did_succeed = function(test)
-            return test.test_results[test].failed and false or true
-        end
+        did_succeed = test.was_test_successfull
     }
   
     self.assert = function(con, reason)
