@@ -25,6 +25,9 @@ return function(test)
         test.assert(type(con.Function) == 'function', `Function for index {i} did not return a Function! (got {type(con.Function)})`)
         con:Fire(i)
 
+        -- Roblox Queue maybe delayed!
+        task.wait(0.1)
+
         test.assert(fired_by[i], `Did not fire the Connection with Argument ({i})`)
     end
 end
