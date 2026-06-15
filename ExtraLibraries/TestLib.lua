@@ -50,7 +50,7 @@ local function expect(name)
             self._cleanup:AddObject(obj)
         end,
         did_succeed = function(test)
-            return test.test_results[test].failed
+            return test.test_results[test].failed and false or true
         end
     }
   
