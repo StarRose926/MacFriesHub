@@ -2,8 +2,10 @@ return function(test)
     local Players = game:GetService('Players')
     local lplr = Players.LocalPlayer or Players:GetPropertyChangedSignal('LocalPlayer'):Wait()
     local Character = lplr.Character or lplr.CharacterAdded:Wait()
+
+    local Script = Character.Animate
     
-    local senv = getsenv(Character.Animate)
+    local senv = getsenv(Script)
 
     test.assert(senv, `Could not retrieve the script-env from the Script ({Script:GetFullName()})`)
     if not senv then return end
