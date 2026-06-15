@@ -3,6 +3,8 @@
     "fireclickdetector",
     "firetouchinterest",
     "fireproximityprompt",
-    "firesignal"
+    "firesignal",
+    "hookfunction",
+    "restorefunction"
   ]
 }
