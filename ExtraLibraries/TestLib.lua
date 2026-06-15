@@ -82,9 +82,9 @@ end
 
 test.run_tests = function(name)
     print(`{name} | Executor Test Compatibility`)
-    print("✅ - Pass, ⛔ - Fail, ⏺️ - No test, 🔧 - Reapir")
+    print("✅ - Pass, ⛔ - Fail, ⏺️ - No test, ⚠️ - Missing Functionality, 🔧 - Reapir")
 
-    local success_counter, fail_counter = 0, 0
+    local success_counter, missing_counter, fail_counter = 0, 0, 0
 
     for _, name in pairs(test.orders) do
         local _test = test.tests[name]
@@ -107,6 +107,13 @@ test.run_tests = function(name)
                     else		
                         warn(('⛔ %s - Failed: %s'):format(name, res))
                     end
+                elseif result.missing then
+                    missing_counter += 1
+                    if typeof(result.missing_items) == 'string' then
+                        warn((`⚠️ %s - Missing Functionality: %s`):format(name, result.missing_items))
+                    elseif typeof(result.missing_items) == 'table' then
+                        warn((`⚠️ %s - Missing Functionality: %s`):format(name, table.concat(result.missing_items, ', ')))
+                    end
                 elseif result.failed then
                     fail_counter += 1
                     if _test.repair then
@@ -126,10 +133,13 @@ test.run_tests = function(name)
     print('\n')
     print('🏁 Finished Tests 🏁')
 
-    local rate = math.round(success_counter / (success_counter + fail_counter) * 100)
+    local total = success_counter + missing_counter + fail_counter
+
+    local rate = math.round(success_counter / total, * 100)
     
-    print(string.format('📊 Tests finished with a test score of %s%% (%s out of %s)', tostring(rate), tostring(success_counter), tostring(success_counter + fail_counter)))
+    print(string.format('📊 Tests finished with a test score of %s%% (%s out of %s)', tostring(rate), tostring(success_counter), tostring(total)))
     print(string.format('⛔ %s %s failed!', tostring(fail_counter), (fail_counter > 1 and 'tests' or 'test')))
+    print(string.format('⚠️ %s %s is missing some functionality!', tostring(missing_counter), (missing_counter > 1 and 'tests' or 'test')))
 end
 
 return test
