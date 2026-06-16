@@ -37,9 +37,12 @@ return function(test)
     task.spawn(function()
         waitableEvent.Event:Wait()
         task.cancel(thread)
+        task.spawn(running)
     end)
 
-    con:Fire(1)
+    task.delay(1, function()
+        con:Fire(1)
+    end)
 
     return coroutine.yield()
 end
