@@ -7,12 +7,11 @@ return function(test)
     local fired_by = {}
     local event_functions = {}
     for i = 1, amount do
-        event_functions[i] = function(res)
+        test.clean(bindable.Event:Connect(function(res)
             if res == i then
                 fired_by[i] = true
             end
-        end
-        test.clean(bindable.Event:Connect(event_functions[i]))
+        end))
     end
 
     local connections = getconnections(bindable.Event);
@@ -21,7 +20,6 @@ return function(test)
     test.assert(#connections == amount, `Did not find all {tostring(amount)} connections!`)
 
     for i, con in connections do
-        local fn = event_functions[i]
         test.assert(type(con.Function) == 'function', `Function for index {i} did not return a Function! (got {type(con.Function)})`)
         con:Fire(i)
 
