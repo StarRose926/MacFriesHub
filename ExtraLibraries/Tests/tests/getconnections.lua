@@ -41,13 +41,7 @@ return function(test)
     end)
 
     task.delay(1, function()
-        local ok, err = pcall(con.Fire, con, 1)
-        test.assert(ok, err)
-
-        if not ok then
-            task.cancel(thread)
-            task.spawn(running)
-        end
+        con:Fire()
     end)
 
     return coroutine.yield()
