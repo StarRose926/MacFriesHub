@@ -29,10 +29,10 @@ return function(test)
     local con = connections[1]
 
     local running = coroutine.running()
-    local thread = task.delay(function()
+    local thread = task.delay(5, function()
         test.assert(fired_by[1], 'Did fire the Connection (1)')
         task.spawn(running)
-    end, 5)
+    end)
 
     task.spawn(function()
         waitableEvent.Event:Wait()
