@@ -7,7 +7,6 @@ return function(test)
     local amount = math.random(1, 3)
 
     local fired_by = {}
-    local event_functions = {}
     for i = 1, amount do
         test.clean(bindable.Event:Connect(function(res)
             if res == i then
@@ -27,6 +26,9 @@ return function(test)
     end
 
     local con = connections[1]
+    
+    test.assert(con.Fire, 'Connection does not have :Fire!')
+    if not con.Fire then return end
 
     local running = coroutine.running()
     local thread = task.delay(5, function()
