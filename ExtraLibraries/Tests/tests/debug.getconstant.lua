@@ -1,4 +1,4 @@
-local function(test)
+return function(test)
     local function closure()
         print("Constants!")
     end
