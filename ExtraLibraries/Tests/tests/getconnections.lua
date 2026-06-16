@@ -32,7 +32,7 @@ return function(test)
 
     local running = coroutine.running()
     local thread = task.delay(5, function()
-        test.assert(fired_by[1], 'Did fire the Connection (1)')
+        test.assert(fired_by[1], 'Did not fire the Connection (1)')
         task.spawn(running)
     end)
 
@@ -42,7 +42,7 @@ return function(test)
         task.spawn(running)
     end)
 
-    task.delay(0.1, function()
+    task.delay(1, function()
         if coroutine.status(running) ~= 'suspended' then
             repeat
                 task.wait()
