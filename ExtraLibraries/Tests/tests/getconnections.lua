@@ -1,5 +1,3 @@
-local cloneref = cloneref or function(obj) return obj end
-
 return function(test)
     local bindable = Instance.new('BindableEvent')
     local waitableEvent = Instance.new('BindableEvent')
