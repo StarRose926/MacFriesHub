@@ -46,7 +46,7 @@ return function(test)
                 task.wait()
             until coroutine.status(running) == 'suspended'
         end
-        con:Fire()
+        con:Fire(1)
     end)
 
     return coroutine.yield()
