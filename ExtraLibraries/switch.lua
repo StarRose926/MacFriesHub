@@ -1,7 +1,5 @@
 local function switch(expression)
     local s = {
-        _cases = {},
-        _default = function() end,
         _found_match = false
     }
 
