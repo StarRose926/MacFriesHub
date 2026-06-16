@@ -1,5 +1,9 @@
+local cloneref = cloneref or function(obj) return obj end
+
 return function(test)
-    local bindable = Instance.new('BindableEvent')
+    local CoreGui = cloneref(game:GetService('CoreGui'))
+    
+    local bindable = Instance.new('BindableEvent', CoreGui)
     local waitableEvent = Instance.new('BindableEvent')
     test.clean(bindable)
     test.clean(waitableEvent)
@@ -42,13 +46,18 @@ return function(test)
         task.spawn(running)
     end)
 
-    task.delay(1, function()
+    task.delay(0.05, function()
         if coroutine.status(running) ~= 'suspended' then
             repeat
                 task.wait()
             until coroutine.status(running) == 'suspended'
         end
-        con:Fire(1)
+        
+        for _, con in connections do
+            if con.Fire then
+                con:Fire(1)
+            end
+        end
     end)
 
     return coroutine.yield()
