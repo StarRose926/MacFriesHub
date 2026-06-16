@@ -1,9 +1,7 @@
 local cloneref = cloneref or function(obj) return obj end
 
 return function(test)
-    local CoreGui = cloneref(game:GetService('CoreGui'))
-    
-    local bindable = Instance.new('BindableEvent', CoreGui)
+    local bindable = Instance.new('BindableEvent')
     local waitableEvent = Instance.new('BindableEvent')
     test.clean(bindable)
     test.clean(waitableEvent)
