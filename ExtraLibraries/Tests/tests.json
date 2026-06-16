@@ -9,7 +9,14 @@
     "getsenv",
     "getconnections",
 
+    "debug.getconstants",
+    "debug.getconstant",
+    "debug.getupvalues",
     "debug.getupvalue",
+    "debug.getprotos",
+    "debug.getproto",
+    "debug.setupvalue",
+    "debug.setconstant",
     "debug.setupvalue"
   ]
 }
