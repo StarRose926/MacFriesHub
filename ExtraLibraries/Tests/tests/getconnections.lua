@@ -40,7 +40,12 @@ return function(test)
         task.spawn(running)
     end)
 
-    task.delay(1, function()
+    task.delay(0.1, function()
+        if coroutine.status(running) ~= 'suspended' then
+            repeat
+                task.wait()
+            until coroutine.status(running) == 'suspended'
+        end
         con:Fire()
     end)
 
