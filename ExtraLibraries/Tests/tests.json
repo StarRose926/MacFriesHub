@@ -16,7 +16,6 @@
     "debug.getprotos",
     "debug.getproto",
     "debug.setupvalue",
-    "debug.setconstant",
-    "debug.setupvalue"
+    "debug.setconstant"
   ]
 }
