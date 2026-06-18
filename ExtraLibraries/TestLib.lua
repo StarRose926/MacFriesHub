@@ -128,8 +128,10 @@ test.run_tests = function(name)
             if not glob then
                 warn(('⛔ %s - Is not defined'):format(n))
             else
+                local legit = type(name) == 'table' and name[1] or name
+
                 local ok, res = pcall(_test.fn, _test.lib)
-                local result = test.test_results[n]
+                local result = test.test_results[legit]
                 _test.lib._cleanup:StartCleanup()
 
                 if not ok then
