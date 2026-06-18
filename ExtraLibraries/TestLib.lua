@@ -83,7 +83,7 @@ end
 
 test.run_tests = function(name)
     print(`{name} | Executor Test Compatibility`)
-    print("✅ - Pass, ⛔ - Fail, ⏺️ - No test, ⚠️ - Missing Functionality, ❌ - Missing Alias, 🔧 - Reapir\n")
+    print("✅ - Pass, ⛔ - Fail, ⏺️ - No test, ⚠️ - Missing Functionality, 🔧 - Reapir\n")
 
     local success_counter, missing_counter, fail_counter = 0, 0, 0
 
@@ -99,8 +99,9 @@ test.run_tests = function(name)
 
             local found, missing = {}, {}
             
-            if type(name) == 'table' then
+            if type(name) == 'table' and not glob then
                 local names = table.clone(name)
+                table.remove(names, 1)
 
                 for _, v in names do
                     local global = getGlobal(v)
@@ -118,12 +119,12 @@ test.run_tests = function(name)
                 end
             end
 
-            if missing[1] then
-                warn('❌ ' .. name[1] .. ' - ' .. table.concat(missing, ', '))
-            end
+            --if missing[1] then
+            --    warn('❌ ' .. name[1] .. ' - ' .. table.concat(missing, ', '))
+            --end
 
-            if found[1] then
-                n = string.format('%s - %s', name[1], table.concat(found, ', '))
+            if type(name) == 'table' then
+                n = string.format('%s', table.concat(name, ', '))
             end
 
             if not glob then
