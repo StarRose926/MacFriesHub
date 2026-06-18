@@ -1,4 +1,6 @@
 return function(test)
+    local firetouchinterest = firetouchinterest or firetouchtransmitter
+    
     local rootPart = game:GetService('Players').LocalPlayer.Character.PrimaryPart
   
     local part = Instance.new('Part', workspace)
