@@ -83,7 +83,7 @@ end
 
 test.run_tests = function(name)
     print(`{name} | Executor Test Compatibility`)
-    print("✅ - Pass, ⛔ - Fail, ⏺️ - No test, ⚠️ - Missing Functionality, 🔧 - Reapir\n")
+    print("✅ - Pass, ⛔ - Fail, ⏺️ - No test, ⚠️ - Missing Functionality, ❌ - Missing Alias, 🔧 - Reapir\n")
 
     local success_counter, missing_counter, fail_counter = 0, 0, 0
 
@@ -94,40 +94,71 @@ test.run_tests = function(name)
         if _test.is_note then
             print(('⏺️ %s'):format(name))
         else
-            local glob = getGlobal(name)
+            local n = type(name) == 'table' and name[1] or name
+            local glob = getGlobal(n)
+
+            local found, missing = {}, {}
+            
+            if type(name) == 'table' then
+                local names = table.clone(name)
+
+                for _, v in names do
+                    local global = getGlobal(v)
+                    n = v
+
+                    if not glob and global then
+                        glob = global
+                    end
+
+                    if global then
+                        table.insert(found, v)
+                    else
+                        table.insert(missing, v)
+                    end
+                end
+            end
+
+            if missing[1] then
+                warn('❌ ' .. name[1] .. ' - ' .. table.concat(missing, ', '))
+            end
+
+            if found[1] then
+                n = string.format('%s - %s', name[1], table.concat(found, ', '))
+            end
+
             if not glob then
-                warn(('⛔ %s - Is not defined'):format(name))
+                warn(('⛔ %s - Is not defined'):format(n))
             else
                 local ok, res = pcall(_test.fn, _test.lib)
-                local result = test.test_results[name]
+                local result = test.test_results[n]
                 _test.lib._cleanup:StartCleanup()
 
                 if not ok then
                     fail_counter += 1
                     if _test.repair then
-                        print((`🔧 %s - Failed but can be replaced: %s`):format(name, res .. line_down))
+                        print((`🔧 %s - Failed but can be replaced: %s`):format(n))
                         _test.repair()
                     else		
-                        warn(('⛔ %s - Failed: %s'):format(name, res .. line_down))
+                        warn(('⛔ %s - Failed: %s'):format(n, res .. line_down))
                     end
                 elseif result.missing then
                     missing_counter += 1
                     if typeof(result.missing_items) == 'string' then
-                        warn((`⚠️ %s - Missing Functionality: %s`):format(name, result.missing_items .. line_down))
+                        warn((`⚠️ %s - Missing Functionality: %s`):format(n, result.missing_items .. line_down))
                     elseif typeof(result.missing_items) == 'table' then
-                        warn((`⚠️ %s - Missing Functionality: %s`):format(name, table.concat(result.missing_items, ', ') .. line_down))
+                        warn((`⚠️ %s - Missing Functionality: %s`):format(n, table.concat(result.missing_items, ', ') .. line_down))
                     end
                 elseif result.failed then
                     fail_counter += 1
                     if _test.repair then
-                        print((`🔧 %s - Failed but can be replaced: %s`):format(name, result.reason .. line_down))
+                        print((`🔧 %s - Failed but can be replaced: %s`):format(n, result.reason .. line_down))
                         _test.repair()
                     else
-                        warn(('⛔ %s - Failed: %s'):format(name, result.reason .. line_down))
+                        warn(('⛔ %s - Failed: %s'):format(n, result.reason .. line_down))
                     end
                 else
                     success_counter += 1
-                    print(('✅ %s%s'):format(name, (res and ' • ' .. tostring(res) or '') .. line_down))
+                    print(('✅ %s%s'):format(n, (res and ' • ' .. tostring(res) or '') .. line_down))
                 end
             end
         end
