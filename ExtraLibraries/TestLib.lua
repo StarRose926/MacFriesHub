@@ -113,8 +113,6 @@ test.run_tests = function(name)
 
                     if global then
                         table.insert(found, v)
-                    else
-                        table.insert(missing, v)
                     end
                 end
             end
@@ -124,7 +122,7 @@ test.run_tests = function(name)
             --end
 
             if type(name) == 'table' then
-                n = string.format('%s', table.concat(name, ', '))
+                n = name[1] .. (found[1] and ' - ' .. found[1] or '') -- string.format('%s', table.concat(name, ', '))
             end
 
             if not glob then
