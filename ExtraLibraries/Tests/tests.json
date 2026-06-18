@@ -5,7 +5,7 @@
     "fireproximityprompt",
     "firesignal",
     "hookfunction",
-    "ishooked",
+    ["ishooked", "isfunctionhooked"],
     "restorefunction",
     "getsenv",
     "getconnections",
