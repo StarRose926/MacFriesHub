@@ -3,6 +3,8 @@ return function(test)
   
     test.assert(did_hookfunction_succeed, 'Cannot run this test medout hookfunction being successfull!')
     if not did_hookfunction_succeed then return end
+
+    local ishooked = ishooked or isfunctionhooked
   
     local function closure()
         return 'Good!'
