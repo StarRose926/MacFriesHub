@@ -71,7 +71,7 @@ test.create = function(name, fn, repair)
 end
 
 test.was_test_successfull = function(name)
-    return test.test_results[name] and (test.test_results[name].failed ~= false) and table.find(test.orders, name)
+    return test.test_results[name] and (test.test_results[name].failed ~= false)
 end
 
 test.make_note = function(name)
