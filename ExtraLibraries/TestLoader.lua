@@ -15,8 +15,8 @@ for _, v in test_info.tests do
 
     if test_str ~= '404: Not Found' then
         local func = loadstring(test_str)()
-            
-        local data = game:HttpGet(('https://raw.githubusercontent.com/StarRose926/MacFriesHub/refs/heads/main/Executor/%s.luau'):format(v))
+        
+        local data = game:HttpGet(('https://raw.githubusercontent.com/StarRose926/MacFriesHub/refs/heads/main/Executor/%s.luau'):format(name))
 
         TestLib.create(v, func, data ~= '404: Not Found' and function()
             return loadstring(data)()
