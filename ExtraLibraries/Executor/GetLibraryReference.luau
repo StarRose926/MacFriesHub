@@ -25,7 +25,8 @@ local SortedList = {
     -- scripts
     getscripts = (getscripts or get_scripts) or loadFallbackLibrary('getscripts'),
     getscriptclosure = (getscriptfunction or get_script_function) or (getscriptclosure or get_script_closure),
-    gettenv = (gettenv) or (getstateenv or get_state_env)
+    gettenv = (gettenv) or (getstateenv or get_state_env),
+    setclosureidentity = setclosureidentity or setclosurecaps
 }
 
 return function(listOrName)
