@@ -17,6 +17,8 @@
     "debug.getprotos",
     "debug.getproto",
     "debug.setupvalue",
-    "debug.setconstant"
+    "debug.setconstant",
+
+    ["setclosureidentity", "setclosurecaps"]
   ]
 }
