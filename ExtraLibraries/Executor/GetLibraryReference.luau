@@ -35,7 +35,13 @@ local SortedList = {
     getscriptclosure = (getscriptfunction or get_script_function) or (getscriptclosure or get_script_closure),
     gettenv = (gettenv) or (getstateenv or get_state_env),
     setclosureidentity = (setclosureidentity or set_closure_identity) or (setclosurecaps or set_closure_caps),
-    getcallingscript = (getcallingscript or get_calling_script) or (getscriptcaller or get_script_caller) or (getcaller or get_caller)
+    getcallingscript = (getcallingscript or get_calling_script) or (getscriptcaller or get_script_caller) or (getcaller or get_caller),
+
+    -- Misc
+    gethwid = (gethwid or get_hwid),
+    gethui = gethui,
+    getobjects = (getobjects or get_objects) or loadFallbackLibrary('getobjects'),
+    setclipboard = (setclipboard or set_clipboard or set_clip_board) or (toclipboard or to_clipboard or to_clip_board) or (toclipboaard),
 }
 
 return function(listOrName)
