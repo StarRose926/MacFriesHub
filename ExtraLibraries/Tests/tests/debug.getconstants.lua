@@ -21,5 +21,5 @@ return function(test)
     test.assert(compare(constants, {
         "print",
         "Hello world"
-    }))
+    }), 'Constants does not match the expected outcome!')
 end
