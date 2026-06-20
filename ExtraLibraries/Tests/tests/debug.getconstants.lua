@@ -1,6 +1,6 @@
 local function compare(t1, t2)
-    for i, v in t1 do
-        if t2[i] ~= v then
+    for i, v in t2 do
+        if t1[i] ~= v then
             return false
         end
     end
