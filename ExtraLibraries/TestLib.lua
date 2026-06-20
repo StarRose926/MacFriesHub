@@ -126,7 +126,7 @@ test.run_tests = function(name)
             end
 
             if not glob then
-                warn(('⛔ %s - Is not defined'):format(n))
+                warn(('⛔ %s - Not defined'):format(n .. line_down))
             else
                 local legit = type(name) == 'table' and name[1] or name
 
