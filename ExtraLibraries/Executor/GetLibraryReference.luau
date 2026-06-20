@@ -7,7 +7,9 @@ local SortedList = {
     ishooked = ishooked or isfunctionhooked,
     restorefunction = restorefunction, -- add the rest later
     getsenv = getsenv,
-    getconnections = getconnections
+    getconnections = getconnections,
+    setidentity = (syn and (syn.setthreadidentity or syn.set_thread_identity)) or setthreadidentity or set_thread_identity or setidentity,
+    getidentity = (syn and (syn.getthreadidentity or syn.get_thread_identity)) or getthreadidentity or get_thread_identity or getidentity
 }
 
 return function(listOrName)
