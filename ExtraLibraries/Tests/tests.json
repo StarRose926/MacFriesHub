@@ -3,12 +3,12 @@
     "fireclickdetector",
     ["firetouchinterest", "firetouchtransmitter"],
     "fireproximityprompt",
-    "firesignal",
-    "hookfunction",
-    ["ishooked", "isfunctionhooked"],
-    "restorefunction",
-    "getsenv",
-    "getconnections",
+    ["firesignal", "fire_signal"],
+    ["hookfunction", "hookfunc", "replacefunc", "replaceclosure", "detourfunction", "detour_function", "detourclosure", "detour_closure"],
+    ["ishooked", "is_hooked", "isfunctionhooked", "is_function_hooked"],
+    ["restorefunction", "restorefunc", "restoreclosure", "restore_closure", "restore_function", "restore_func"],
+    ["getsenv", "getscriptenv", "get_script_env"],
+    ["getconnections", "get_connections"],
 
     "debug.getconstants",
     "debug.getconstant",
@@ -19,6 +19,7 @@
     "debug.setupvalue",
     "debug.setconstant",
 
-    ["setclosureidentity", "setclosurecaps"]
+    ["setclosureidentity", "setclosurecaps"],
+    ["hooksignal", "hook_signal"]
   ]
 }
