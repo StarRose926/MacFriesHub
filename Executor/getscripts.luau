@@ -1,4 +1,4 @@
-local function getscripts(includeNil)
+local function getscripts()
     local scripts = game:QueryDescendants('LocalScript')
 
     for _, v in game:QueryDescendants('Script') do
@@ -7,7 +7,7 @@ local function getscripts(includeNil)
         end
     end
 
-    if (getnilinstances or get_nil_instances) or includeNil then
+    if (getnilinstances or get_nil_instances) then
         local function insertScript(v)
             if v:IsA('LocalScript') then
                 table.insert(scripts, v)
