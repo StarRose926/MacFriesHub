@@ -152,7 +152,7 @@ test.run_tests = function(name)
                 elseif result.failed then
                     fail_counter += 1
                     if _test.repair then
-                        print((`🔧 %s - Failed but can be replaced: %s`):format(n, result.reason .. line_down))
+                        print((`🔧 %s - Failed but can be replaced: %s`):format(n, (result.reason or 'no-reason') .. line_down))
                         _test.repair()
                     else
                         warn(('⛔ %s - Failed: %s'):format(n, result.reason .. line_down))
