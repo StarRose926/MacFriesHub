@@ -29,7 +29,7 @@ return function(Packages, ScriptFakeLoader)
 
     -- Lets fix it up a little, shall we?
     ScriptFakeLoader.makeModuleCache(TopbarModule.Reference, game:HttpGet('https://raw.githubusercontent.com/1ForeverHD/TopbarPlus/refs/heads/main/src/Reference.lua'):gsub('ReplicatedStorage', 'RobloxReplicatedStorage'))
-    ScriptFakeLoader.makeModuleCache(TopbarModule, game:HttpGet('https://raw.githubusercontent.com/1ForeverHD/TopbarPlus/refs/heads/main/src/init.lua'):gsub('localPlayer:WaitForChild(%"PlayerGui%")', 'game:GetService(%"CoreGui%")'))
+    ScriptFakeLoader.makeModuleCache(TopbarModule, game:HttpGet('https://raw.githubusercontent.com/1ForeverHD/TopbarPlus/refs/heads/main/src/init.lua'):gsub('localPlayer:WaitForChild%("PlayerGui"%)', 'game:GetService("CoreGui")'))
     
     return TopbarModule
 end
