@@ -70,7 +70,7 @@ local cache = {
 			closure(k, v)
 		end
 	end,
-  clear = function(self)
+  	clear = function(self)
 		table.clear(self._cache)
 	end,
 }
@@ -153,6 +153,12 @@ loader.put = function(loaded_package, name, parent)
 		for _, v in inst:GetChildren() do
 			v.Parent = parent
 		end
+	end
+end
+
+loader.setGlobal = function(name, glob)
+	if name == 'FakeScriptLoader' then
+		ScriptFakeLoader = glob
 	end
 end
 
@@ -246,7 +252,7 @@ loader.load = function(git, zip_info, inst_info, fixes)
 		ScriptFakeLoader.makeModuleCache(module, content, '=' .. module:GetFullName())
 	end)
 
-  cache:clear()
+  	cache:clear()
 	
 	return OutputFolder
 end
