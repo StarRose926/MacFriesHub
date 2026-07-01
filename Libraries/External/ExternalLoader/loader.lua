@@ -249,7 +249,7 @@ loader.load = function(git, zip_info, inst_info, fixes)
 	collapseInitModules(OutputFolder, OutputFolder)
 	
 	cache:forEach(function(module, content)
-		ScriptFakeLoader.makeModuleCache(module, content, '=' .. module:GetFullName())
+		ScriptFakeLoader.makeModuleCache(module, content)
 	end)
 
   	cache:clear()
