@@ -10,7 +10,7 @@ return function(Package, ScriptFakeLoader)
     	main_zip = 'react-luau-main',
     	src_folder = 'modules'
     }, {
-    	Parent = game:GetService('ReplicatedStorage'),
+    	Parent = nil,
     	Name = 'ReactFolder'
     });
     loader.put(ReactModule, 'react-luau-main', Packages)
@@ -24,7 +24,7 @@ return function(Package, ScriptFakeLoader)
     	main_zip = 'luau-polyfill-main',
     	src_folder = 'modules'
     }, {
-    	Parent = game:GetService('ReplicatedStorage'),
+    	Parent = nil,
     	Name = 'LuauPolyfillFolder'
     });
     loader.put(LuauPolyfillModule, 'luau-polyfill-main', Packages)
@@ -38,7 +38,7 @@ return function(Package, ScriptFakeLoader)
     	main_zip = 'symbol-luau-main',
     	src_folder = 'src'
     }, {
-    	Parent = game:GetService('ReplicatedStorage'),
+    	Parent = nil,
     	Name = 'SymbolFolder'
     });
     local Symbol = SymbolModule:WaitForChild('symbol-luau-main')
@@ -67,8 +67,6 @@ return function(Package, ScriptFakeLoader)
     	createGetFString.Name = 'createGetFString'
     	
     	ScriptFakeLoader.makeModuleCache(createGetFString, game:HttpGet('https://raw.githubusercontent.com/MaximumADHD/Roblox-Client-Tracker/bed638621b68cd2ce5e9de4da707767e31a0f804/LuaPackages/Packages/_Index/SafeFlags/SafeFlags/createGetFString.lua'))
-    	
-    	return SafeFlags
     end
     loadSafeFlags()
 end
