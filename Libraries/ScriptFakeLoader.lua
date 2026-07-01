@@ -75,7 +75,7 @@ local function makeLocalScript(script, code, path)
 	local fenv = getfenv()
 	local req = clonefunc(makeCacheRequire)
 	
-	local spesific_env = script_env_changes[module]
+	local spesific_env = script_env_changes[script]
 
 	local env = setmetatable({}, {
 		__index = function(self, index)
