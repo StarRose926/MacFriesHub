@@ -3,7 +3,7 @@ return function()
 
     if #tostring(address) <= 10 then
         return 32
-    else
-        return 64
     end
+
+    return 64
 end
