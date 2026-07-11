@@ -136,8 +136,6 @@ local function collapseInitModules(root, OutputFolder)
 	end
 end
 
-print("Extracting packages into Roblox layout...")
-
 local loader = {}
 
 loader.put = function(loaded_package, name, parent)
@@ -187,11 +185,6 @@ loader.load = function(git, zip_info, inst_info, fixes)
 	
 	-- 3. Optimized extraction loop (Kept completely untouched)
 	for _, name, offset, size, packed, crc in zzlib.files(zipContent) do
-		if string.find(name, "clz32") then
-			print("FOUND CLZ32 IN ZIP:", name)
-		end
-		
-		print(name, offset, size, packed)
 		if not string.match(name, "/$") and string.find(name, string.format("%s/%s/", zip_info.main_zip, zip_info.src_folder), 1, true) then
 
 			-- Clean up path (removes the GitHub root folder)
@@ -243,10 +236,12 @@ loader.load = function(git, zip_info, inst_info, fixes)
 						module.Parent = targetFolder
 
 						cache:set(module, fileData)
-						
-						print('Fixed file corruption:', name)
+
+						-- USE "console.print" later on!
+						-- print('Fixed file corruption:', name)
 					else
-						warn("Failed to extract:", name, ' -', fileData)
+						-- USE "console.warn" later on!
+						warn("Failed to extract:", name)
 					end
 				end
 			end
