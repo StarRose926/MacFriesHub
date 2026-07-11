@@ -1,6 +1,4 @@
-local GithubLoader = loadstring(game:HttpGet('hhttps://raw.githubusercontent.com/StarRose926/MacFriesHub/refs/heads/main/libraries/external/GithubLoader.lua'))()
-
-return function(ScriptService)
+return function(GithubLoader, ScriptService)
     GithubLoader.setGlobal('FakeScriptLoader', ScriptService)
 
     local TopbarPlus = GithubLoader.load({
