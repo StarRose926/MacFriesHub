@@ -14,6 +14,7 @@ return function(GithubLoader, ScriptService)
     })
 
     ScriptService.setScriptEnvirementGlobal(TopbarPlus['TopbarPlus-main'].Attribute, 'print', function(...) end)
+    ScriptService.setScriptEnvirementGlobal(TopbarPlus['TopbarPlus-main'].Attribute, 'warn', function(...) end)
     ScriptService.makeModuleCache(TopbarPlus['TopbarPlus-main'].Attribute, game:HttpGet('https://raw.githubusercontent.com/1ForeverHD/TopbarPlus/refs/heads/main/src/Attribute.lua'))
 
     return TopbarPlus['TopbarPlus-main']
