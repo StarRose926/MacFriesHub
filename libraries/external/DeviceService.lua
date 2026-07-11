@@ -1,4 +1,6 @@
 -- DeviceService Fourms: https://devforum.roblox.com/t/os-and-device-detection-module/3841990
+--
+-- Fallback for: UserInputService:GetPlatform
 
 local getArchitecture = loadstring(game:HttpGet('https://raw.githubusercontent.com/StarRose926/MacFriesHub/refs/heads/main/libraries/external/determineBitArchitecture.lua'))()
 
