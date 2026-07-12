@@ -5,7 +5,7 @@ return function(_, ScriptService)
     local MainSource = Source:gsub('BindAction', 'BindCoreAction'):gsub('UnbindAction', 'UnbindCoreAction'):gsub('require%(script.Attribution%)', ''):gsub('require%(script.Parent.topbarplus%)', 'require(script.Parent.TopbarPlus)'):gsub('Players.LocalPlayer:WaitForChild%("PlayerGui"%)', 'game:GetService("CoreGui").MacFries.Guis')
 
     local Module = Instance.new('ModuleScript')
-    Module.Name = 'Stachel'
+    Module.Name = 'Satchel'
     Module.Parent = cloneref(game:GetService('CoreGui')).MacFries.Modules
 
     ScriptService.makeModuleCache(Module, MainSource)
