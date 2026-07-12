@@ -12,7 +12,7 @@ local Guis = Instance.new('Folder', MacFries)
 Guis.Name = 'Guis'
 
 return function(GithubLoader, ScriptService)
-    for _, name in {'TopbarPlus', 'Stachel'} do
+    for _, name in {'TopbarPlus', 'Satchel'} do
         loadstring(game:HttpGet(string.format('https://raw.githubusercontent.com/StarRose926/MacFriesHub/refs/heads/main/libraries/internal/Packages/%s.lua', name)))()(GithubLoader, ScriptService)
     end
 end
