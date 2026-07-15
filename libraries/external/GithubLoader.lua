@@ -193,7 +193,7 @@ loader.load = function(git, zip_info, inst_info, fixes, skip)
 
 			-- Only extract scripts
 			if string.match(fileName, "%.luau$") or string.match(fileName, "%.lua$") then
-				local real = string.gsub(fileName, '.luau', ''):gsub('.lua', '');
+				local real = cleanScriptExtension(fileName)
 				if table.find(skip, real) then
 					continue
 				end
