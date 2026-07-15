@@ -193,11 +193,6 @@ loader.load = function(git, zip_info, inst_info, fixes, skip)
 
 			-- Only extract scripts
 			if string.match(fileName, "%.luau$") or string.match(fileName, "%.lua$") then
-				local real = cleanScriptExtension(fileName)
-				if table.find(skip, real) then
-					continue
-				end
-				
 				local success, fileData = pcall(function()
 					if packed then
 						-- The file is compressed, use the unzip function
@@ -222,9 +217,7 @@ loader.load = function(git, zip_info, inst_info, fixes, skip)
 					-- module.Source = fileData
 					module.Parent = targetFolder
 
-					if not table.find(skip, real) then
-						cache:set(module, fileData)
-					end
+					cache:set(module, fileData)
 				else
 					if fixes and fixes[name] then
 						fileData = fixes[name]
@@ -260,6 +253,8 @@ loader.load = function(git, zip_info, inst_info, fixes, skip)
 	cache:forEach(function(module, content)
 		if not table.find(skip, module.Name) then
 			ScriptFakeLoader.makeModuleCache(module, content)
+		else
+			module:Destroy()
 		end
 	end)
 	
