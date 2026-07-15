@@ -221,8 +221,10 @@ loader.load = function(git, zip_info, inst_info, fixes, skip)
 					module.Name = cleanName
 					-- module.Source = fileData
 					module.Parent = targetFolder
-					
-					cache:set(module, fileData)
+
+					if not table.find(skip, real) then
+						cache:set(module, fileData)
+					end
 				else
 					if fixes and fixes[name] then
 						fileData = fixes[name]
@@ -256,7 +258,9 @@ loader.load = function(git, zip_info, inst_info, fixes, skip)
 	collapseInitModules(OutputFolder, OutputFolder)
 	
 	cache:forEach(function(module, content)
-		ScriptFakeLoader.makeModuleCache(module, content)
+		if not table.find(skip, module.Name) then
+			ScriptFakeLoader.makeModuleCache(module, content)
+		end
 	end)
 	
 	cache:clear()
