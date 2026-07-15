@@ -1,6 +1,6 @@
 local cloneref = cloneref or function(obj) return obj end
 
-return function(GithubLoader, ScriptService)
+return function(Github, ScriptService)
     Github.setGlobal('FakeScriptLoader', ScriptService)
 
     local TopbarPlusFolder = Github.load({
