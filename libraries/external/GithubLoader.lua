@@ -192,7 +192,12 @@ loader.load = function(git, zip_info, inst_info, fixes, skip)
 			local dirPath, fileName = string.match(cleanPath, "(.-)([^/]+)$")
 
 			-- Only extract scripts
-			if (string.match(fileName, "%.luau$") or string.match(fileName, "%.lua$")) and not table.find(skip, fileName) then
+			if string.match(fileName, "%.luau$") or string.match(fileName, "%.lua$") then
+				local real = string.gsub(fileName, '.luau', ''):gsub('.lua', '');
+				if table.find(skip, real) then
+					continue
+				end
+				
 				local success, fileData = pcall(function()
 					if packed then
 						-- The file is compressed, use the unzip function
