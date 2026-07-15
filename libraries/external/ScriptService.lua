@@ -106,7 +106,11 @@ local function makeLocalScript(script, code, path)
 		end
 	})
 
-	local func = loadstring(code, '=' .. (path or script:GetFullName()))
+	local func, err = loadstring(code, '=' .. (path or script:GetFullName()))
+	if not func then
+		error(err, 1)
+	end
+		
 	setfenv(func, env)
 
 	return func()
