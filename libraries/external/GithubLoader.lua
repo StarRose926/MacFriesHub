@@ -160,7 +160,7 @@ loader.setGlobal = function(name, glob)
 	end
 end
 
-loader.load = function(git, zip_info, inst_info, fixes)
+loader.load = function(git, zip_info, inst_info, fixes, skip)
 	-- 2. Setup output folder
 	local OutputFolder = inst_info.Instance
 	
@@ -192,7 +192,7 @@ loader.load = function(git, zip_info, inst_info, fixes)
 			local dirPath, fileName = string.match(cleanPath, "(.-)([^/]+)$")
 
 			-- Only extract scripts
-			if string.match(fileName, "%.luau$") or string.match(fileName, "%.lua$") then
+			if (string.match(fileName, "%.luau$") or string.match(fileName, "%.lua$")) and not table.find(skip, fileName) then
 				local success, fileData = pcall(function()
 					if packed then
 						-- The file is compressed, use the unzip function
