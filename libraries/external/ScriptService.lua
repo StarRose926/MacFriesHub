@@ -62,7 +62,11 @@ local function makeModuleCache(module, code, path)
 		end
 	})
 
-	local func = loadstring(code, '=' .. (path or module:GetFullName()))
+	local func, err = loadstring(code, '=' .. (path or module:GetFullName()))
+	if not func then
+		error(err, 1)
+	end
+	
 	setfenv(func, env)
 
 	cache[module] = {
