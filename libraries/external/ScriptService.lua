@@ -1,12 +1,6 @@
 local cache = {}
 local script_env_changes = {}
 
-local clonefunc = clonefunc or clonefunction or function(func)
-	return function(...)
-		return func(...)
-	end
-end
-
 local function setScriptEnvirementGlobal(script, glob, newGlob)
 	script_env_changes[script] = script_env_changes[script] or {}
 	
@@ -31,7 +25,7 @@ end
 
 local function makeModuleCache(module, code, path)
 	local fenv = getfenv()
-	local req = clonefunc(makeCacheRequire)
+	local req = makeCacheRequire
 	
 	local spesific_env = script_env_changes[module]
 
