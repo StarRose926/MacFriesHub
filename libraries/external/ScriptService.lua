@@ -17,8 +17,10 @@ local function makeCacheRequire(module)
 	local moduleCache = cache[module]
 
 	if moduleCache then
-		if not moduleCache.cache then
+		if moduleCache.cache == nil and moduleCache.running ~= true then
+			moduleCache.running = true
 			moduleCache.cache = moduleCache.Function()
+			moduleCache.running = false
 		end
 
 		return moduleCache.cache
