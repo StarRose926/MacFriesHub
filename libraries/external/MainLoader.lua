@@ -11,6 +11,9 @@ Modules.Name = 'Modules'
 local Guis = Instance.new('Folder', MacFries)
 Guis.Name = 'Guis'
 
+local Scripts = Instance.new('Folder', MacFries)
+Scripts.Name = 'Scripts'
+
 return function(GithubLoader, ScriptService)
     for _, name in {'Flamework', 'TopbarPlus', 'Satchel'} do
         loadstring(game:HttpGet(string.format('https://raw.githubusercontent.com/StarRose926/MacFriesHub/refs/heads/main/libraries/internal/Packages/%s.lua', name)))()(GithubLoader, ScriptService)
