@@ -1,3 +1,5 @@
+local HttpService = game:GetService('HttpService')
+
 local create_placeid = ...
 
 local function _makefolder(path)
@@ -22,5 +24,11 @@ if create_placeid then
 end
 
 _writefile('MacFries/Registry', '')
+
+
+local translationList = HttpService:JSONDecode(game:HttpGet('https://raw.githubusercontent.com/StarRose926/MacFriesHub/refs/heads/main/Translations/list.json'))
+for _, n in translationList.list do
+    _writefile(string.format('MacFries/Translations/%s.%s', n, translationList.extension), game:HttpGet(string.format('https://raw.githubusercontent.com/StarRose926/MacFriesHub/refs/heads/main/Translations/%s.%s', n, translationList.extension)))
+end
 
 return 'MacFries'
