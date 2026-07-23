@@ -30,10 +30,6 @@ end
 _writefile('MacFries/Registry', '')
 
 
-local function readTranslationVersion()
-    if isfile('MacFries/')
-end
-
 local translationList = HttpService:JSONDecode(game:HttpGet('https://raw.githubusercontent.com/StarRose926/MacFriesHub/refs/heads/main/Translations/list.json'))
 local config = HttpService:JSONDecode(readfile('MacFries/config.json'))
 
