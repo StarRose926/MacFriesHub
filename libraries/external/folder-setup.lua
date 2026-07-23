@@ -13,7 +13,9 @@ local function _writefile(path, content)
 end
 
 _makefolder('MacFries')
+
 _makefolder('MacFries/Saves')
+_makefolder('MacFries/Translations')
 
 if create_placeid then
     _makefolder('MacFries/Saves/' .. tostring(game.PlaceId))
