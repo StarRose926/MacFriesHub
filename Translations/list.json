@@ -1,4 +1,5 @@
 {
   "list": ["en"],
-  "extension": "csv"
+  "extension": "csv",
+  "version": "0.0.1"
 }
