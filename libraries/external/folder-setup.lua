@@ -16,7 +16,6 @@ end
 
 _makefolder('MacFries')
 
-_makefolder('MacFries/Saves')
 _makefolder('MacFries/Translations')
 _makefolder('MacFries/Logs')
 
