@@ -32,17 +32,4 @@ _writefile('MacFries/REGISTRY', '')
 
 _writefile('MacFries/settings.ini', '')
 
-
-local translationList = HttpService:JSONDecode(game:HttpGet('https://raw.githubusercontent.com/StarRose926/MacFriesHub/refs/heads/main/Translations/list.json'))
-local config = HttpService:JSONDecode(readfile('MacFries/config.json'))
-
-if config.translationVersion ~= translationList.version then
-    for _, n in translationList.list do
-        _writefile(string.format('MacFries/Translations/%s.%s', n, translationList.extension), game:HttpGet(string.format('https://raw.githubusercontent.com/StarRose926/MacFriesHub/refs/heads/main/Translations/%s.%s', n, translationList.extension)))
-    end
-    
-    config.translationVersion = translationList.version
-end
-writefile('MacFries/config.json', HttpService:JSONEncode(config))
-
 return 'MacFries'
