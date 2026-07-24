@@ -502,7 +502,6 @@ local RegistryKey do
 				return
 			end
 
-			print(p, path)
 			return createSubKey(t, p .. '\\' .. path, writable_permissionCheck, registrySecurity)
 		end
 
@@ -695,26 +694,26 @@ local Registry do
 	end
 
 	function RegistryService:SaveToFile(file)
-		if writefile then
+		if writefile and type(writefile) == 'function' then
 			writefile(file, 'Windows Registry Editor Version 5.00\n\n' .. RegistryParser.stringify(RegistryMemory.HKEY_CURRENT_USER, 'HKEY_CURRENT_USER'))
-		elseif game:GetService('RunService'):IsStudio() then
-			print(string.format('[%s]:\n\n%s', file, 'Windows Registry Editor Version 5.00\n\n' .. RegistryParser.stringify(RegistryMemory.HKEY_CURRENT_USER, 'HKEY_CURRENT_USER')))
+		else
+			warn('[MacFries][FileIO][Registry]: Failed to save file - "writefile" is not a function!')
 		end
 	end
 
 	function RegistryService:LoadFromFile(file, f_c)
-		if readfile then
+		if readfile and type(readfile) == 'function' then
 			return RegistryParser.parse(readfile(file))
-		elseif game:GetService('RunService'):IsStudio() then
-			print(RegistryParser.parse(f_c))
+		else
+			warn('[MacFries][FileIO][Registry]: Failed to read file - "readfile" is not a function!')
 		end
 	end
 
 	function RegistryService:SaveToFileSpesific(file, registry, reg_name)
-		if writefile then
+		if writefile and type(writefile) == 'function' then
 			writefile(file, 'Windows Registry Editor Version 5.00\n\n' .. RegistryParser.stringify(registry._MemoryObject, reg_name))
-		elseif game:GetService('RunService'):IsStudio() then
-			print(string.format('%s', 'Windows Registry Editor Version 5.00\n\n' .. RegistryParser.stringify(registry._MemoryObject, reg_name)))
+		else
+			warn('[MacFries][FileIO][Registry]: Failed to save file - "writefile" is not a function!')
 		end
 	end
 
