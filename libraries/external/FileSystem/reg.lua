@@ -709,7 +709,7 @@ local Registry do
 		end
 	end
 
-	function RegistryService:SaveToFileSpesific(file, registry, reg_name)
+	function RegistryService:SaveToFileSpecific(file, registry, reg_name)
 		if writefile and type(writefile) == 'function' then
 			writefile(file, 'Windows Registry Editor Version 5.00\n\n' .. RegistryParser.stringify(registry._MemoryObject, reg_name))
 		else
