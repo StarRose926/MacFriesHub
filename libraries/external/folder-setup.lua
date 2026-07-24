@@ -18,6 +18,7 @@ _makefolder('MacFries')
 
 _makefolder('MacFries/Saves')
 _makefolder('MacFries/Translations')
+_makefolder('MacFries/Logs')
 
 _writefile('MacFries/config.json', HttpService:JSONEncode({
     translationVersion = "0.0.0"
@@ -28,6 +29,8 @@ if create_placeid then
 end
 
 _writefile('MacFries/Registry', '')
+
+_writefile('MacFries/settings.ini', '')
 
 
 local translationList = HttpService:JSONDecode(game:HttpGet('https://raw.githubusercontent.com/StarRose926/MacFriesHub/refs/heads/main/Translations/list.json'))
