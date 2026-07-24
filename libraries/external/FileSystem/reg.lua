@@ -680,6 +680,7 @@ local Registry do
 	local RegistryService = {}
 	RegistryService.ClassName = 'RegistryService'
 	RegistryService.Name = 'RegistryService'
+	RegistryService.Parser = RegistryParser
 
 	function RegistryService:SetPersistence(persistence)
 		RegistryCache.Persistence = persistence
