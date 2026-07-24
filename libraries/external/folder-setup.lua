@@ -20,10 +20,6 @@ _makefolder('MacFries/Saves')
 _makefolder('MacFries/Translations')
 _makefolder('MacFries/Logs')
 
-_writefile('MacFries/config.json', HttpService:JSONEncode({
-    translationVersion = "0.0.0"
-}))
-
 if create_placeid then
     _makefolder('MacFries/Saves/' .. tostring(game.PlaceId))
 end
