@@ -28,7 +28,7 @@ if create_placeid then
     _makefolder('MacFries/Saves/' .. tostring(game.PlaceId))
 end
 
-_writefile('MacFries/Registry', '')
+_writefile('MacFries/REGISTRY', '')
 
 _writefile('MacFries/settings.ini', '')
 
